@@ -1,79 +1,73 @@
 let currentPlayer = 'X';
 let gameBoard = [
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', '']
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
 ];
 
-
-let gameActive = true; 
-
 function makeMove(row, col) {
-  if (gameActive && gameBoard[row][col] === '') {
-    gameBoard[row][col] = currentPlayer;
-    document.getElementById(`cell-${row}-${col}`).innerText = currentPlayer;
-    checkWinner();
-    if (gameActive) { 
-      togglePlayer();
-      updateTurnText();
+    if (gameBoard[row][col] === '') {
+        gameBoard[row][col] = currentPlayer;
+        document.getElementById(`cell-${row}-${col}`).innerText = currentPlayer;
+        checkWinner();
+        togglePlayer();
     }
-  }
 }
 
 function togglePlayer() {
-  currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-}
-
-function updateTurnText() {
-  document.getElementById('turn').innerText = `${currentPlayer}'s Turn`;
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    document.getElementById('turn').innerText = `${currentPlayer}'s Turn`;
 }
 
 function restartGame() {
-  currentPlayer = 'X';
-  gameActive = true; 
-  updateTurnText();
-  clearBoard();
-}
-
-function clearBoard() {
-  for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 3; col++) {
-      document.getElementById(`cell-${row}-${col}`).innerText = '';
-    }
-  }
+    currentPlayer = 'X';
+    gameBoard = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
+    ];
+    document.getElementById('winnerAlert').style.display = 'none';
+    document.getElementById('turn').innerText = `${currentPlayer}'s Turn`;
+    document.querySelectorAll('.cell').forEach(cell => cell.innerText = '');
 }
 
 function checkWinner() {
-    let winner = null;
-  
-   
+    // Check rows, columns, and diagonals for a winner
     for (let i = 0; i < 3; i++) {
-      if (gameBoard[i][0] && gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][0] === gameBoard[i][2]) {
-        winner = gameBoard[i][0];
-      }
-      if (gameBoard[0][i] && gameBoard[0][i] === gameBoard[1][i] && gameBoard[0][i] === gameBoard[2][i]) {
-        winner = gameBoard[0][i];
-      }
+        if (gameBoard[i][0] !== '' && gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][1] === gameBoard[i][2]) {
+            announceWinner(gameBoard[i][0]);
+            return;
+        }
+        if (gameBoard[0][i] !== '' && gameBoard[0][i] === gameBoard[1][i] && gameBoard[1][i] === gameBoard[2][i]) {
+            announceWinner(gameBoard[0][i]);
+            return;
+        }
     }
-  
- 
-    if (!winner && gameBoard[0][0] && gameBoard[0][0] === gameBoard[1][1] && gameBoard[0][0] === gameBoard[2][2]) {
-      winner = gameBoard[0][0];
+    if (gameBoard[0][0] !== '' && gameBoard[0][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][2]) {
+        announceWinner(gameBoard[0][0]);
+        return;
     }
-    if (!winner && gameBoard[0][2] && gameBoard[0][2] === gameBoard[1][1] && gameBoard[0][2] === gameBoard[2][0]) {
-      winner = gameBoard[0][2];
+    if (gameBoard[0][2] !== '' && gameBoard[0][2] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][0]) {
+        announceWinner(gameBoard[0][2]);
+        return;
     }
-  
-    if (winner) {
-      announceWinner(winner);
-      gameActive = false; 
-    } else if (!gameBoard.flat().includes('')) {
-      announceWinner('Draw');
-      gameActive = false; 
+
+    // Check for a draw
+    if (gameBoard.every(row => row.every(cell => cell !== ''))) {
+        announceDraw();
     }
-  }
-  function announceWinner(winner) {
-    let winnerText = winner === 'Draw' ? 'It\'s a Draw!' : `Player ${winner} Wins!`;
-    document.getElementById('winnerAlert').innerText = winnerText;
+}
+
+function announceWinner(winner) {
+    document.getElementById('winnerAlert').innerText = `${winner} wins!`;
+    document.getElementById('winnerAlert').classList.remove('alert-danger');
+    document.getElementById('winnerAlert').classList.add('alert-success');
     document.getElementById('winnerAlert').style.display = 'block';
-  }
+}
+
+function announceDraw() {
+    document.getElementById('winnerAlert').innerText = 'It\'s a draw!';
+    document.getElementById('winnerAlert').classList.remove('alert-success');
+    document.getElementById('winnerAlert').classList.add('alert-danger');
+    document.getElementById('winnerAlert').style.display = 'block';
+}
