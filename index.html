@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 id="turn">X's Turn</h1>
+    <div class="row">
+      <div class="col cell" id="cell-0-0" onclick="makeMove(0, 0)"></div>
+      <div class="col cell" id="cell-0-1" onclick="makeMove(0, 1)"></div>
+      <div class="col cell" id="cell-0-2" onclick="makeMove(0, 2)"></div>
+    </div>
+    <div class="row">
+      <div class="col cell" id="cell-1-0" onclick="makeMove(1, 0)"></div>
+      <div class="col cell" id="cell-1-1" onclick="makeMove(1, 1)"></div>
+      <div class="col cell" id="cell-1-2" onclick="makeMove(1, 2)"></div>
+    </div>
+    <div class="row">
+      <div class="col cell" id="cell-2-0" onclick="makeMove(2, 0)"></div>
+      <div class="col cell" id="cell-2-1" onclick="makeMove(2, 1)"></div>
+      <div class="col cell" id="cell-2-2" onclick="makeMove(2, 2)"></div>
+    </div>
+    <button class="btn btn-danger mt-3" onclick="restartGame()">Restart Game</button>
+  </div>
+
+  <div id="winnerAlert" class="alert alert-success" role="alert" style="display: none;"></div>
+
+  <script src="index.js"></script> 
+</body>
+</html>
