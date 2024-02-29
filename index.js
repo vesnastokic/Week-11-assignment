@@ -32,7 +32,7 @@ function restartGame() {
 }
 
 function checkWinner() {
-    // Check rows, columns, and diagonals for a winner
+    
     for (let i = 0; i < 3; i++) {
         if (gameBoard[i][0] !== '' && gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][1] === gameBoard[i][2]) {
             announceWinner(gameBoard[i][0]);
@@ -52,7 +52,7 @@ function checkWinner() {
         return;
     }
 
-    // Check for a draw
+    
     if (gameBoard.every(row => row.every(cell => cell !== ''))) {
         announceDraw();
     }
