@@ -1,38 +1,76 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic-Tac-Toe</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <h1 id="turn">X's Turn</h1>
-    <div class="row">
-      <div class="col cell" id="cell-0-0" onclick="makeMove(0, 0)"></div>
-      <div class="col cell" id="cell-0-1" onclick="makeMove(0, 1)"></div>
-      <div class="col cell" id="cell-0-2" onclick="makeMove(0, 2)"></div>
-    </div>
-    <div class="row">
-      <div class="col cell" id="cell-1-0" onclick="makeMove(1, 0)"></div>
-      <div class="col cell" id="cell-1-1" onclick="makeMove(1, 1)"></div>
-      <div class="col cell" id="cell-1-2" onclick="makeMove(1, 2)"></div>
-    </div>
-    <div class="row">
-      <div class="col cell" id="cell-2-0" onclick="makeMove(2, 0)"></div>
-      <div class="col cell" id="cell-2-1" onclick="makeMove(2, 1)"></div>
-      <div class="col cell" id="cell-2-2" onclick="makeMove(2, 2)"></div>
-    </div>
-    <button class="btn btn-danger mt-3" onclick="restartGame()">Restart Game</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-fluid mt-5 p-5 bg-light text-dark" bs-theme="dark">
+      <h1 class="text-center" id="turn">X's Turn</h1>
+      <!-- row 1 -->
+      <div class="row">
+        <div class="col-3"></div>
+        <!-- col-2 takes up 2/12 column spaces -->
+        <div class="col-2 cell" id="cell-0-0" onclick="makeMove(0, 0)"></div>
+        <div class="col-2 cell" id="cell-0-1" onclick="makeMove(0, 1)"></div>
+        <div class="col-2 cell" id="cell-0-2" onclick="makeMove(0, 2)"></div>
+        <div class="col-3"></div>
+      </div>
 
-  <img src="https://t3.ftcdn.net/jpg/05/72/99/52/360_F_572995264_X14q5Zn60SaTgmqbxWLN5fwdxDNFjr63.jpg" alt="Tic-Tac-Toe" class="side-image left">
-    <img src="https://t3.ftcdn.net/jpg/05/72/99/52/360_F_572995264_X14q5Zn60SaTgmqbxWLN5fwdxDNFjr63.jpg" alt="Tic-Tac-Toe" class="side-image right">
+      <!-- row 2 -->
+      <div class="row">
+        <div class="col-3"></div>
+        <!-- game cell 1 - begin -->
+        <div class="col-2 cell" id="cell-1-0" onclick="makeMove(1, 0)"></div>
+        <!-- game cell 1 - end -->
+        <!-- game cell 2 - begin -->
+        <div class="col-2 cell" id="cell-1-1" onclick="makeMove(1, 1)"></div>
+        <!-- game cell 2 - end -->
+        <!-- game cell 3 - begin -->
+        <div class="col-2 cell" id="cell-1-2" onclick="makeMove(1, 2)"></div>
+        <!-- game cell 3 - end -->
+        <div class="col-3"></div>
+      </div>
 
-    <div id="winnerAlert" class="alert alert-success" role="alert" style="display: none;"></div>
+      <!-- row 3 -->
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-2 cell" id="cell-2-0" onclick="makeMove(2, 0)"></div>
+        <div class="col-2 cell" id="cell-2-1" onclick="makeMove(2, 1)"></div>
+        <div class="col-2 cell" id="cell-2-2" onclick="makeMove(2, 2)"></div>
+        <div class="col-3"></div>
+      </div>
 
-    <script src="index.js"></script> 
-</body>
+      <div class="row justify-content-center">
+        <button class="text-center btn btn-danger mt-3" onclick="restartGame()">
+          Restart Game
+        </button>
+      </div>
+    </div>
+
+    <img
+      src="https://t3.ftcdn.net/jpg/05/72/99/52/360_F_572995264_X14q5Zn60SaTgmqbxWLN5fwdxDNFjr63.jpg"
+      alt="Tic-Tac-Toe"
+      class="side-image left"
+    />
+    <img
+      src="https://t3.ftcdn.net/jpg/05/72/99/52/360_F_572995264_X14q5Zn60SaTgmqbxWLN5fwdxDNFjr63.jpg"
+      alt="Tic-Tac-Toe"
+      class="side-image right"
+    />
+
+    <div
+      id="winnerAlert"
+      class="alert alert-success"
+      role="alert"
+      style="display: none"
+    ></div>
+
+    <script src="index.js"></script>
+  </body>
 </html>
- 
